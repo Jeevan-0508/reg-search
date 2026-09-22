@@ -1,10 +1,61 @@
+<p align="center"><img src="assets/jk-brand-banner.png" alt="Jeevan Siddhabhaktula — Risk. Governance. AI." width="220"></p>
+
+<div align="center">
+
 # reg-search
 
-**Live:** [jeevan-0508.github.io/reg-search](https://jeevan-0508.github.io/reg-search/)
+**Natural-language search over 56 real, cited requirements across the EU AI Act, GDPR, ISO/IEC 42001
+and NIST AI RMF — ranked with a BM25 implementation written from scratch.**
+No embeddings. No external model. No API key. No server.
 
-Natural-language search over 56 real, cited requirements across the EU AI Act, GDPR, ISO/IEC 42001
-and NIST AI RMF, ranked with a BM25 implementation written from scratch in vanilla JS. No embeddings,
-no external model, no API key, no server.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-jeevan--0508.github.io-38bdf8?style=for-the-badge)](https://jeevan-0508.github.io/reg-search/)
+[![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-14_passing-22c55e?style=for-the-badge)](src/bm25.test.js)
+[![Stack](https://img.shields.io/badge/Stack-Vanilla%20JS%20%7C%20Zero%20Deps-818cf8?style=for-the-badge)](#whats-real)
+
+</div>
+
+## How it works
+
+```mermaid
+flowchart LR
+    subgraph SOURCE["Source of truth"]
+        F["ai-governance-control-room
+frameworks.json
+56 requirements, 4 frameworks"]
+    end
+
+    subgraph INDEX["Build once, on page load"]
+        D["src/data.js
+window.REQUIREMENTS"]
+        B1["BM25.buildIndex
+tokenize -> term freq -> idf
+per requirement's title + summary"]
+    end
+
+    subgraph QUERY["Every keystroke"]
+        Q["Search box input"]
+        T["tokenize query"]
+        S["BM25.search
+k1=1.5, b=0.75
+per-doc score + per-term contribution"]
+        R["Ranked results
+sorted, filtered by active framework chips"]
+        H["Render: badge, ref, title/summary
+with matched terms highlighted
+and a real per-term score breakdown"]
+    end
+
+    F --> D --> B1
+    Q --> T --> S
+    B1 --> S
+    S --> R --> H
+```
+
+Everything above the fold runs in one page load: 56 requirements are tokenized and indexed once,
+then every keystroke re-scores the same index against the new query. There is nothing to deploy,
+nothing to call, and nothing to key in — the honest lexical-search version of the same data model
+behind [AI Risk Control Room](https://jeevan-0508.github.io/ai-governance-control-room/).
 
 ## Why BM25 and not an embedding model
 

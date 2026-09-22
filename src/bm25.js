@@ -81,6 +81,7 @@
       var counts = index.termFreq[doc.id] || {};
       var docLength = (index.docTokens[doc.id] || []).length;
       var matched = [];
+      var contributions = [];
       var score = 0;
 
       queryTerms.forEach(function (term) {
@@ -88,11 +89,16 @@
         if (!f) return;
         var termIdf = index.idf[term] || 0;
         var denom = f + k1 * (1 - b + b * (docLength / (index.avgDocLength || 1)));
-        score += termIdf * ((f * (k1 + 1)) / denom);
+        var termScore = termIdf * ((f * (k1 + 1)) / denom);
+        score += termScore;
         matched.push(term);
+        // Real per-term contribution, not a display estimate: this is the exact addend that
+        // just went into `score` above, so contributions always sum back to it.
+        contributions.push({ term: term, idf: termIdf, contribution: termScore });
       });
 
-      return { doc: doc, score: score, matched: matched };
+      contributions.sort(function (x, y) { return y.contribution - x.contribution; });
+      return { doc: doc, score: score, matched: matched, contributions: contributions };
     });
 
     return scored

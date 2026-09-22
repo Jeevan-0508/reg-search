@@ -27,10 +27,11 @@ a clean example of the lexical half on its own.
 - **56 requirements**, copied from [ai-governance-control-room](https://github.com/Jeevan-0508/ai-governance-control-room)'s
   `data/frameworks.json` — that repo is the source of truth; this one's copy is kept in sync by hand.
 - **`src/bm25.js`** — tokenizer, inverted-index-free BM25 scorer (`k1=1.5`, `b=0.75`, the field's own
-  standard defaults), 11 tests covering tokenization, idf weighting, ranking order, zero-match queries
-  and determinism.
-- **`src/app.js`** — wires the search box, the per-framework filter chips, and result rendering
-  (including which exact terms matched) to the index. No framework, no build step.
+  standard defaults), 14 tests covering tokenization, idf weighting, ranking order, per-term
+  contribution, zero-match queries and determinism.
+- **`src/app.js`** — wires the search box, the per-framework filter chips, and result rendering to the
+  index, including a real per-term score breakdown next to each result (not an estimate — the exact
+  addend that went into that result's BM25 score). No framework, no build step.
 
 ## Run it
 
@@ -38,11 +39,10 @@ Open `index.html` directly, no server needed — `data.js` and `bm25.js` are pla
 modules or `fetch()` calls, so this works double-clicked from disk exactly like it does on GitHub Pages.
 
 ```
-bun test        # 11 tests
+bun test        # 14 tests
 ```
 
 ## Not yet done
 
 - BYOK semantic layer as an optional second ranking pass alongside BM25, so a query with no literal
   term overlap could still surface a conceptually related requirement.
-- A "why is this requirement scored this way" breakdown per matched term, not just the final number.

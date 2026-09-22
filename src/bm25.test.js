@@ -83,3 +83,37 @@ describe('search', function () {
     expect(first.map(function (r) { return r.doc.id; })).toEqual(second.map(function (r) { return r.doc.id; }));
   });
 });
+
+describe('per-term contribution breakdown', function () {
+  test('every result reports a contribution per matched term, summing back to the total score', function () {
+    var idx = buildIndex(docs);
+    var results = search(idx, docs, 'human oversight high-risk');
+    var top = results[0];
+    expect(top.contributions.length).toBe(top.matched.length);
+    var summed = top.contributions.reduce(function (acc, c) { return acc + c.contribution; }, 0);
+    expect(summed).toBeCloseTo(top.score, 6);
+  });
+
+  test('contributions are sorted highest first', function () {
+    var idx = buildIndex(docs);
+    var results = search(idx, docs, 'high-risk safety product');
+    var contribs = results[0].contributions.map(function (c) { return c.contribution; });
+    for (var i = 1; i < contribs.length; i++) {
+      expect(contribs[i]).toBeLessThanOrEqual(contribs[i - 1]);
+    }
+  });
+
+  test('a term with higher idf contributes more when term frequency is equal', function () {
+    var idx = buildIndex(docs);
+    var results = search(idx, docs, 'human oversight');
+    var byTerm = {};
+    results[0].contributions.forEach(function (c) { byTerm[c.term] = c; });
+    // both terms appear once in doc d; the rarer of the two (higher idf) contributes more.
+    var human = byTerm['human'], oversight = byTerm['oversight'];
+    if (human && oversight && human.idf !== oversight.idf) {
+      var higherIdf = human.idf > oversight.idf ? human : oversight;
+      var lowerContribution = human.idf > oversight.idf ? oversight : human;
+      expect(higherIdf.contribution).toBeGreaterThanOrEqual(lowerContribution.contribution);
+    }
+  });
+});

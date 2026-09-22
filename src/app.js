@@ -23,6 +23,13 @@
   }
   function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
+  function renderBreakdown(contributions) {
+    if (!contributions.length) return 'matched: &mdash;';
+    return 'why: ' + contributions.map(function (c) {
+      return '<b>' + escapeHtml(c.term) + '</b> (' + c.contribution.toFixed(2) + ')';
+    }).join(' &middot; ');
+  }
+
   function renderResult(r) {
     var rec = r.doc.record;
     var div = document.createElement('div');
@@ -35,7 +42,7 @@
       '</div>' +
       '<h3>' + highlight(rec.title, r.matched) + '</h3>' +
       '<p>' + highlight(rec.summary, r.matched) + '</p>' +
-      '<div class="matched">matched: ' + (r.matched.length ? r.matched.join(', ') : '&mdash;') + '</div>';
+      '<div class="matched">' + renderBreakdown(r.contributions) + '</div>';
     return div;
   }
 

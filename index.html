@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>reg-search — 56 real requirements, ranked with BM25</title>
+<meta name="description" content="Natural-language search over 56 cited requirements across the EU AI Act, GDPR, ISO/IEC 42001 and NIST AI RMF, ranked with a from-scratch BM25 implementation. Zero backend, zero dependencies.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>reg-search</h1>
+    <p class="tag">BM25, not an API call</p>
+    <p class="sub">56 real, cited requirements across the EU AI Act, GDPR, ISO/IEC 42001 and NIST AI
+    RMF &mdash; the same data model behind
+    <a href="https://jeevan-0508.github.io/ai-governance-control-room/">AI Risk Control Room</a>, searched
+    by a ranking function built from scratch: term frequency, inverse document frequency and length
+    normalisation, no model, no network call, no key. Type a plain question &mdash;
+    <a href="#" data-example="human oversight high-risk systems">human oversight high-risk systems</a>,
+    <a href="#" data-example="automated individual decision-making">automated individual decision-making</a> &mdash;
+    and see which article actually matches, and why.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="searchbox">
+      <input id="q" type="text" placeholder="Search 56 requirements — e.g. &quot;automated decision-making&quot;" autofocus>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="meta-row" id="meta"></div>
+    <div id="results"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Requirement text is copied from <a href="https://github.com/Jeevan-0508/ai-governance-control-room">ai-governance-control-room</a>,
+    the source of truth &mdash; kept in sync by hand, not a live feed. Ranking logic:
+    <a href="https://github.com/Jeevan-0508/reg-search/blob/main/src/bm25.js">src/bm25.js</a>, 11 tests.
+    No dependencies, no tracking, no server. <a href="https://github.com/Jeevan-0508/reg-search">Source</a>.</p>
+  </div>
+</footer>
+
+<script src="src/data.js"></script>
+<script src="src/bm25.js"></script>
+<script src="src/app.js"></script>
+<script>
+document.querySelectorAll('a[data-example]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    e.preventDefault();
+    var input = document.getElementById('q');
+    input.value = a.dataset.example;
+    input.dispatchEvent(new Event('input'));
+    input.focus();
+  });
+});
+</script>
+</body>
+</html>

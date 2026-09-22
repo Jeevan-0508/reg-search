@@ -1,0 +1,10 @@
+{
+  "name": "reg-search",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Natural-language search over 56 cited requirements across the EU AI Act, GDPR, ISO/IEC 42001 and NIST AI RMF, ranked with a from-scratch BM25 implementation.",
+  "scripts": {
+    "test": "bun test"
+  }
+}

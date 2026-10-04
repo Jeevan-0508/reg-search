@@ -199,6 +199,9 @@ window.REQUIREMENTS = [
     ],
     "tiers": [
       "high"
+    ],
+    "conditions": [
+      "fria_trigger"
     ]
   },
   {
@@ -247,6 +250,11 @@ window.REQUIREMENTS = [
     "tiers": [
       "high",
       "limited"
+    ],
+    "conditions": [
+      "interacts_with_people",
+      "generates_content",
+      "biometric_categorisation"
     ]
   },
   {
@@ -260,7 +268,10 @@ window.REQUIREMENTS = [
     "roles": [
       "provider"
     ],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "gpai_model_provider"
+    ]
   },
   {
     "id": "EUAIA-72",
@@ -306,6 +317,9 @@ window.REQUIREMENTS = [
     ],
     "tiers": [
       "high"
+    ],
+    "conditions": [
+      "affects_individuals"
     ]
   },
   {
@@ -317,7 +331,10 @@ window.REQUIREMENTS = [
     "title": "Principles of processing",
     "summary": "Lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and demonstrable accountability.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-6",
@@ -328,7 +345,10 @@ window.REQUIREMENTS = [
     "title": "Lawful basis",
     "summary": "Each processing purpose needs an identified and documented lawful basis; a legitimate-interests basis needs a balancing assessment.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-9",
@@ -339,7 +359,10 @@ window.REQUIREMENTS = [
     "title": "Special category data",
     "summary": "Processing of special category data, including biometric data for unique identification, is prohibited unless a specific condition applies.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "special_category_data"
+    ]
   },
   {
     "id": "GDPR-13",
@@ -350,7 +373,10 @@ window.REQUIREMENTS = [
     "title": "Information to data subjects",
     "summary": "Tell people what is done with their data, including the existence of automated decision-making and the logic involved.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-15",
@@ -361,7 +387,10 @@ window.REQUIREMENTS = [
     "title": "Right of access",
     "summary": "People can obtain confirmation, a copy of their data and meaningful information about automated decision-making applied to them.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-22",
@@ -372,7 +401,10 @@ window.REQUIREMENTS = [
     "title": "Automated individual decision-making",
     "summary": "Solely automated decisions with legal or similarly significant effect are restricted, and where permitted require human intervention, an explanation and the right to contest.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "automated_decision"
+    ]
   },
   {
     "id": "GDPR-25",
@@ -383,7 +415,10 @@ window.REQUIREMENTS = [
     "title": "Data protection by design and by default",
     "summary": "Implement technical and organisational measures, including pseudonymisation and minimisation, at design time and by default.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-30",
@@ -394,7 +429,10 @@ window.REQUIREMENTS = [
     "title": "Records of processing",
     "summary": "Maintain a record of processing activities, including purposes, categories, recipients, transfers and retention.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-32",
@@ -405,7 +443,10 @@ window.REQUIREMENTS = [
     "title": "Security of processing",
     "summary": "Security appropriate to the risk, including confidentiality, integrity, availability and resilience, and regular testing of measures.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "personal_data"
+    ]
   },
   {
     "id": "GDPR-35",
@@ -416,7 +457,10 @@ window.REQUIREMENTS = [
     "title": "Data protection impact assessment",
     "summary": "A DPIA is required where processing is likely to result in high risk, including systematic evaluation by automated means and large-scale special category processing.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "dpia_trigger"
+    ]
   },
   {
     "id": "GDPR-44",
@@ -427,7 +471,10 @@ window.REQUIREMENTS = [
     "title": "International transfers",
     "summary": "Transfers outside the EEA need an adequacy decision, appropriate safeguards or a derogation, plus a transfer risk assessment where relevant.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "third_country_transfer"
+    ]
   },
   {
     "id": "ISO42001-5.2",
@@ -548,7 +595,10 @@ window.REQUIREMENTS = [
     "title": "Third-party and customer relationships",
     "summary": "Allocate and manage responsibilities across suppliers, model providers and customers in the AI value chain.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "third_party_model"
+    ]
   },
   {
     "id": "NIST-GOVERN-1.1",
@@ -592,7 +642,10 @@ window.REQUIREMENTS = [
     "title": "Third-party risk",
     "summary": "Policies address AI risks arising from third-party software, data and models.",
     "roles": [],
-    "tiers": []
+    "tiers": [],
+    "conditions": [
+      "third_party_model"
+    ]
   },
   {
     "id": "NIST-MAP-1.1",

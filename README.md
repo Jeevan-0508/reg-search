@@ -75,8 +75,9 @@ a clean example of the lexical half on its own.
 
 ## What's real
 
-- **56 requirements**, copied from [ai-governance-control-room](https://github.com/Jeevan-0508/ai-governance-control-room)'s
-  `data/frameworks.json` — that repo is the source of truth; this one's copy is kept in sync by hand.
+- **56 requirements**, synced weekly from [ai-governance-control-room](https://github.com/Jeevan-0508/ai-governance-control-room)'s
+  `data/frameworks.json` — that repo is the source of truth; every record retains its official citation
+  URL and the refresh records a content hash under `data/`.
 - **`src/bm25.js`** — tokenizer, inverted-index-free BM25 scorer (`k1=1.5`, `b=0.75`, the field's own
   standard defaults), 14 tests covering tokenization, idf weighting, ranking order, per-term
   contribution, zero-match queries and determinism.

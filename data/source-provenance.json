@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "upstream_repository": "Jeevan-0508/ai-governance-control-room",
+  "upstream_url": "https://raw.githubusercontent.com/Jeevan-0508/ai-governance-control-room/main/data/frameworks.json",
+  "content_hash": "bfccb58347ddc6800792430be52c56b2fb4b41504221d7bc3e78631d755b8699",
+  "upstream_updated": "2026-09-06",
+  "retrieved_at": "2026-10-04T07:44:59.882Z",
+  "requirement_count": 56,
+  "official_sources": [
+    {
+      "framework": "EUAIA",
+      "citation": "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "kind": "regulation",
+      "availability": "OK"
+    },
+    {
+      "framework": "GDPR",
+      "citation": "Regulation (EU) 2016/679",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "kind": "regulation",
+      "availability": "OK"
+    },
+    {
+      "framework": "ISO42001",
+      "citation": "ISO/IEC 42001:2023 - Artificial intelligence management system",
+      "url": "https://www.iso.org/standard/81230.html",
+      "kind": "management_standard",
+      "availability": "HTTP_403"
+    },
+    {
+      "framework": "NIST",
+      "citation": "NIST AI Risk Management Framework 1.0 (AI 100-1), January 2023",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "kind": "voluntary_framework",
+      "availability": "OK"
+    }
+  ],
+  "note": "Plain-language records remain cited paraphrases. This sync never rewrites them with generated text."
+}

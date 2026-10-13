@@ -15,6 +15,8 @@ No embeddings. No external model. No API key. No server.
 
 </div>
 
+<p align="center"><a href="docs/getting-started.md">Getting started</a> · <a href="docs/quality-review.md">Quality review</a></p>
+
 ## How it works
 
 ```mermaid
